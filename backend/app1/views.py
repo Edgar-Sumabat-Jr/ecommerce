@@ -7,6 +7,7 @@ from .serializers import UserRegistrationSerializer
 from rest_framework.permissions import IsAuthenticated
 
 
+
 class UserRegistrationAPIView(APIView):
     def post(self, request):
         serializer = UserRegistrationSerializer(data=request.data)
@@ -32,16 +33,21 @@ class UserProfileAPIView(APIView):
         })
     
 
-# custom token to use email for login
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+# # custom token to use email for login
+# from rest_framework_simplejwt.views import TokenObtainPairView
+# from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        # Add any custom claims you want to include in the token here
-        return token
+# class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
+#     @classmethod
+#     def get_token(cls, user):
+#         token = super().get_token(user)
+#         # Add any custom claims you want to include in the token here
+#         return token
+
+
+from rest_framework_simplejwt.views import TokenObtainPairView
+from .serializers import CustomTokenObtainPairSerializer
+
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer

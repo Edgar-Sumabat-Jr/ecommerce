@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1',
     'rest_framework',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -149,3 +152,6 @@ AUTHENTICATION_BACKENDS = [
     'app1.backends.EmailBackend',  # Replace 'yourapp' with the correct app name
     'django.contrib.auth.backends.ModelBackend',  # This is the default one its stil uses username when logging in (optional)
 ]
+
+
+CORS_ALLOW_ALL_ORIGINS = True
