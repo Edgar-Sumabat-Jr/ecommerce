@@ -93,7 +93,7 @@ function RegisterForm() {
 
         {error && (
                 <div style={{ color: 'red', marginTop: '10px' }}>
-                    {errorMessages.map((msg, index) => (
+                    {error.split('\n').map((msg, index) => (
                         <div key={index}>{msg}</div>
                     ))}
                 </div>
