@@ -28,15 +28,27 @@ function RegisterForm() {
             console.log("password: ", password)
             console.log("password2: ", password2)
             
+            setError('');
+
             // Redirect or update UI as needed
             console.log('Registration successful');
             alert(JSON.stringify(inputs, null, 2));
         }
         catch (err) {
-            setError('Invalid Credentials');
-            console.error(err);
-        }
+    if (err.response && err.response.data) {
+        const errorData = err.response.data;
+        const messages = Object.values(errorData).flat().join('\n');
+        setError(messages);  // Show detailed validation messages
+        console.error(messages);
+    } else {
+        setError('An unexpected error occurred.');
+        console.error(err);
+    }
+}
     };
+
+
+    const errorMessages = error.split('\n');
 
 
     return (
@@ -78,6 +90,15 @@ function RegisterForm() {
             </label>
 <br />
             <input type="submit"/>
+
+        {error && (
+                <div style={{ color: 'red', marginTop: '10px' }}>
+                    {errorMessages.map((msg, index) => (
+                        <div key={index}>{msg}</div>
+                    ))}
+                </div>
+            )}
+
         </form>
   )
 }
