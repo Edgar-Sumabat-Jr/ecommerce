@@ -47,10 +47,7 @@ function RegisterForm() {
 }
     };
 
-
-    const errorMessages = error.split('\n');
-
-
+    
     return (
     <form onSubmit={handleSubmit}>
             <label>Username:
