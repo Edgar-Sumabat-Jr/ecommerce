@@ -2,13 +2,13 @@ import { useState } from 'react'
 import axios from 'axios';
 
 function RegisterForm() {
-    const[inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({});
     const [error, setError] = useState('');
-  
+
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+        setInputs(values => ({ ...values, [name]: value }))
         console.log(inputs)
     };
 
@@ -27,7 +27,7 @@ function RegisterForm() {
             console.log("email: ", email)
             console.log("password: ", password)
             console.log("password2: ", password2)
-            
+
             setError('');
 
             // Redirect or update UI as needed
@@ -35,60 +35,60 @@ function RegisterForm() {
             alert(JSON.stringify(inputs, null, 2));
         }
         catch (err) {
-    if (err.response && err.response.data) {
-        const errorData = err.response.data;
-        const messages = Object.values(errorData).flat().join('\n');
-        setError(messages);  // Show detailed validation messages
-        console.error(messages);
-    } else {
-        setError('An unexpected error occurred.');
-        console.error(err);
-    }
-}
+            if (err.response && err.response.data) {
+                const errorData = err.response.data;
+                const messages = Object.values(errorData).flat().join('\n');
+                setError(messages);  // Show detailed validation messages
+                console.error(messages);
+            } else {
+                setError('An unexpected error occurred.');
+                console.error(err);
+            }
+        }
     };
 
-    
+
     return (
-    <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit}>
             <label>Username:
                 <input
                     type='text'
                     name='username'
                     value={inputs.username || ''}
                     onChange={handleChange}
-                />  
+                />
             </label>
-<br />
+    <br />
             <label>Email:
                 <input
                     type='email'
                     name='email'
                     value={inputs.email || ''}
                     onChange={handleChange}
-                />  
+                />
             </label>
-<br />
+    <br />
             <label>Password:
                 <input
                     type='password'
                     name='password'
                     value={inputs.password || ''}
                     onChange={handleChange}
-                />  
+                />
             </label>
-<br />
+    <br />
             <label>Confirm Password:
                 <input
                     type='password'
                     name='password2'
                     value={inputs.password2 || ''}
                     onChange={handleChange}
-                />  
+                />
             </label>
-<br />
-            <input type="submit"/>
+    <br />
+            <input type="submit" />
 
-        {error && (
+            {error && (
                 <div style={{ color: 'red', marginTop: '10px' }}>
                     {error.split('\n').map((msg, index) => (
                         <div key={index}>{msg}</div>
@@ -97,7 +97,7 @@ function RegisterForm() {
             )}
 
         </form>
-  )
+    )
 }
 
 export default RegisterForm
