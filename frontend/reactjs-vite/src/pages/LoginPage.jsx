@@ -7,7 +7,7 @@ function LoginPage() {
   const { user } = useAuth();
 
   if (user) {
-    return <Navigate to="/profile" replace />;
+    return <Navigate to="/" replace />;
   }
 
   return (

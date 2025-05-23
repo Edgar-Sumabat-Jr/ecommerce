@@ -2,10 +2,13 @@
 
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { replace, useNavigate } from 'react-router-dom';
+
 
 function ProfilePage() {
   const [profile, setProfile] = useState(null);
   const [error, setError] = useState('');
+  const navigate = useNavigate();
   
   // Fetch profile data
   useEffect(() => {
@@ -13,6 +16,8 @@ function ProfilePage() {
       const accessToken = localStorage.getItem('access_token');
       if (!accessToken) {
         setError('You must be logged in to view this page.');
+        navigate("/login");
+        
         return;
       }
 

@@ -1,11 +1,13 @@
 import { useState } from 'react'
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm() {
   const { login } = useAuth();
   const [inputs, setInputs] = useState({});
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -36,7 +38,7 @@ function LoginForm() {
       // console.log("refresh: ", refresh)
       
       // Redirect to the profile page after successful login
-      window.location.href = '/profile'; 
+      navigate("/")
 
       // Redirect or update UI as needed
       console.log('Login successful');

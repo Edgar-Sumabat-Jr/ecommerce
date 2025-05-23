@@ -1,4 +1,19 @@
+/* src/index.css */
+
 :root {
-  background-color: black;
-  color: white;
+  --bg-color: #ffffff;
+  --text-color: #212529;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark {
+  --bg-color: #121212;
+  --text-color: #f8f9fa;
 }
