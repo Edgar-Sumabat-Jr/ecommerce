@@ -1,8 +1,20 @@
 .custom-navbar {
-  height: 90px;
+  height: 80px;
   padding: 0;
+  background-color: var(--navbar-bg-color);
+}
+
+.navbar-brand {
+  color: var(--text-color);
+
 }
 
 .custom-nav-link {
   padding: 30px 0px;
+  color: var(--text-color)
 }
+
+.custom-nav-link:hover {
+  color: var(--hover-text-color);
+}
+
