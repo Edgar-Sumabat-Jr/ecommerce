@@ -1,13 +1,18 @@
 /* src/index.css */
 
 :root {
+  height: 100%;
+
   --bg-color: #fff8f0;
   --navbar-bg-color: #f9f1e7;
   --text-color: #3c3c3c;
   --hover-text-color: #1a1a1a; /* slightly darker for light mode hover */
+  
 }
 
 body {
+  height: 100%;
+
   background-color: var(--bg-color);
   color: var(--text-color);
   margin: 0;
@@ -20,4 +25,9 @@ body.dark {
   --navbar-bg-color: #252526;
   --text-color: #d4d4d4;
   --hover-text-color: #f0f0f0;
+}
+
+
+main {
+  min-height: 80vh;
 }

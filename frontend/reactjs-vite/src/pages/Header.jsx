@@ -25,13 +25,14 @@ function Header() {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Nav.Link as={Link} to="/" className="custom-nav-link">Home</Nav.Link>
+              <Nav.Link as={Link} to="/" className="custom-nav-link"><i className="fa-solid fa-house"></i>Home</Nav.Link>
+              <Nav.Link as={Link} to="/cart" className="custom-nav-link"><i className="fa-solid fa-cart-shopping"></i>Cart</Nav.Link>
               {user ? (
-                <Nav.Link onClick={handleLogout} className="custom-nav-link">Logout</Nav.Link>
+                <Nav.Link onClick={handleLogout} className="custom-nav-link"><i className="fa fa-sign-out" aria-hidden="true"></i>Logout</Nav.Link>
               ) : (
                 <>
-                  <Nav.Link as={Link} to="/login" className="custom-nav-link">Login</Nav.Link>
-                  <Nav.Link as={Link} to="/register" className="custom-nav-link">Register</Nav.Link>
+                  <Nav.Link as={Link} to="/login" className="custom-nav-link"><i className="fa-solid fa-user"></i>Login</Nav.Link>
+                  <Nav.Link as={Link} to="/register" className="custom-nav-link"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</Nav.Link>
                 </>
               )}
             </Nav>
@@ -41,8 +42,7 @@ function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
-      <Outlet />
+      
     </>
   );
 }
