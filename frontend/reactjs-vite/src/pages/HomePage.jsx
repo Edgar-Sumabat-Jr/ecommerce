@@ -12,7 +12,7 @@ function HomePage() {
     <div>
       HomePage
 
-      <Container fluid>
+      <Container>
 
         <Row>
           {products.map(product => (

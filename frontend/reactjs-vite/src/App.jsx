@@ -20,7 +20,12 @@ import Test2 from './pages/Test2';
 import ThemeToggle from './components/ThemeToggle';
 // import Footer from './components/Footer';
 
+
+// components/layout.jsx
 import Layout from './components/Layout';
+
+
+import ProductsPage from './pages/ProductsPage';
 
 function App() {
   return (
@@ -35,11 +40,15 @@ function App() {
             <Route path='profile' element={<ProfilePage />} />
             <Route path="profile" element={<PrivateRoute element={ProfilePage} />} />
 
+            <Route path='product/:id' element={<ProductsPage />} />
+
+
+            {/* ----------- testing links ----------*/}
             <Route path='todo' element={<Todo />} />
-
-
             <Route path='test' element={<Test />} />
             <Route path='test2' element={<Test2 />} />
+            {/* ----------- end of testing links ----------*/}
+
 
 
             <Route path='*' element={<NoPage />} />
