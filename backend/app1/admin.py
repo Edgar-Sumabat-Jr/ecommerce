@@ -1,7 +1,8 @@
 # admin.py
 from django.contrib import admin
-from .models import CustomUser
+from .models import CustomUser, Product
 from django.contrib.auth.admin import UserAdmin
+from .models import *
 
 class CustomUserAdmin(UserAdmin):
     # Add the fields you want to display on the user list page
@@ -23,3 +24,11 @@ class CustomUserAdmin(UserAdmin):
 
 # Register the custom user model with the custom admin class
 admin.site.register(CustomUser, CustomUserAdmin)
+
+
+
+admin.site.register(Product)
+admin.site.register(Review)
+admin.site.register(Order)
+admin.site.register(OrderItem)
+admin.site.register(ShippingAddress)
