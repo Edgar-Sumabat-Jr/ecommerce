@@ -6,10 +6,15 @@ import './index.css'
 
 import App from './App.jsx'
 
+// redux
+import { Provider } from 'react-redux'
 
+import store from './store'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </StrictMode>,
 )
