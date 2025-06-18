@@ -1,15 +1,26 @@
 from rest_framework import serializers
 from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+
+User = get_user_model()
 
 class UserRegistrationSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True, required=True, validators=[validate_password])
     password2 = serializers.CharField(write_only=True, required=True)
+    _id = serializers.SerializerMethodField(read_only=True)
+    isAdmin = serializers.SerializerMethodField(read_only=True)
 
     class Meta:
         model = get_user_model()
-        fields = ['username', 'email', 'password', 'password2', 'birth_date']
+        fields = ['id', '_id', 'username', 'email', 'password', 'password2', 'isAdmin', 'birth_date']
+
+    
+    def get__id(self, obj):
+        return obj.id
+    
+    def get_isAdmin(self, obj):
+        return obj.is_staff
 
     def validate_email(self, value):
         if User.objects.filter(email=value).exists():
@@ -71,6 +82,8 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = {
             'refresh': str(refresh),
             'access': str(refresh.access_token),
+            'id': user.id,
+            '_id': user.id,
             'email': user.email,
             'username': user.username,
         }
