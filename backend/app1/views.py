@@ -29,7 +29,7 @@ class UserProfileAPIView(APIView):
         return Response({
             'username': user.username,
             'email': user.email,
-            'birth_date': user.birth_date,
+            # 'birth_date': user.birth_date,
         })
     
 

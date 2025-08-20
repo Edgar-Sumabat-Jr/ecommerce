@@ -10,6 +10,7 @@ import Test from './pages/Test';
 import Loginpage from './pages/LoginPage';
 import Registerpage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
+import CartPage from './pages/CartPage';
 
 
 import PrivateRoute from './components/PrivateRoute';
@@ -41,6 +42,7 @@ function App() {
             <Route path="profile" element={<PrivateRoute element={ProfilePage} />} />
 
             <Route path='product/:id' element={<ProductsPage />} />
+            <Route path='/cart/:id?' element={<CartPage />}/>
 
 
             {/* ----------- testing links ----------*/}
