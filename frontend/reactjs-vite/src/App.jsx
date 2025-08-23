@@ -11,7 +11,7 @@ import Loginpage from './pages/LoginPage';
 import Registerpage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
-
+import ShippingPage from './pages/ShippingPage';
 
 import PrivateRoute from './components/PrivateRoute';
 
@@ -43,7 +43,7 @@ function App() {
 
             <Route path='product/:id' element={<ProductsPage />} />
             <Route path='/cart/:id?' element={<CartPage />}/>
-
+            <Route path='/shipping' element={<ShippingPage />} />
 
             {/* ----------- testing links ----------*/}
             <Route path='todo' element={<Todo />} />
