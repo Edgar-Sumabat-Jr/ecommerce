@@ -2,6 +2,9 @@ import { useState } from 'react'
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import FormContainer from './FormContainer';
+
+import { Form } from 'react-bootstrap';
 
 function LoginForm() {
   const { login } = useAuth();
@@ -58,45 +61,102 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      {/* <label>Username:
-        <input
-          type="text"
-          name="username" 
-          value={inputs.username || ""}
-          onChange={handleChange} 
-        />
-      </label> */}
 
-      <label>Email:
-        <input
-          type="email"
-          name="email"
-          value={inputs.email || ""}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
+    
+    // <form onSubmit={handleSubmit}>
+    //   {/* <label>Username:
+    //     <input
+    //       type="text"
+    //       name="username" 
+    //       value={inputs.username || ""}
+    //       onChange={handleChange} 
+    //     />
+    //   </label> */}
 
-      <label>Password:
-        <input
-          type="password"
-          name="password"
-          value={inputs.password || ""}
-          onChange={handleChange}
-        />
-      </label>
-      <br />
-      <input type="submit" />
+    //   <label>Email:
+    //     <input
+    //       type="email"
+    //       name="email"
+    //       value={inputs.email || ""}
+    //       onChange={handleChange}
+    //     />
+    //   </label>
+    //   <br />
 
-      {error && (
-        <div style={{ color: 'red', marginTop: '10px' }}>
-          {error.split('\n').map((msg, index) => (
-            <div key={index}>{msg}</div>
-          ))}
-        </div>
-      )}
-    </form>
+    //   <label>Password:
+    //     <input
+    //       type="password"
+    //       name="password"
+    //       value={inputs.password || ""}
+    //       onChange={handleChange}
+    //     />
+    //   </label>
+    //   <br />
+    //   <input type="submit" />
+
+    //   {error && (
+    //     <div style={{ color: 'red', marginTop: '10px' }}>
+    //       {error.split('\n').map((msg, index) => (
+    //         <div key={index}>{msg}</div>
+    //       ))}
+    //     </div>
+    //   )}
+    // </form>
+
+
+
+
+
+<FormContainer>
+        <h1>Login</h1>
+        <Form onSubmit={handleSubmit}>
+            <Form.Group controlId='email'>
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                required
+                type='text'
+                name='email'
+                placeholder='email'
+                value={inputs.email || ""}
+                onChange={handleChange}
+                />
+            </Form.Group>
+
+
+        <Form.Group controlId='password'>
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                required
+                type='password'
+                name='password'
+                placeholder='password'
+                value={inputs.password || ""}
+                onChange={handleChange}
+                />
+            </Form.Group>
+
+  <button type='submit' className='btn btn-dark mt-3'>
+      Login
+    </button>
+
+  </Form>
+
+
+{error && (
+    <div style={{ color: 'red', marginTop: '10px' }}>
+      {error.split('\n').map((msg, index) => (
+        <div key={index}>{msg}</div>
+      ))}
+    </div>
+  )}
+
+
+</FormContainer>
+
+
+
+
+
   )
 }
 
