@@ -41,7 +41,7 @@ function LoginForm() {
       // console.log("refresh: ", refresh)
       
       // Redirect to the profile page after successful login
-      navigate("/")
+      // navigate("/")
 
       // Redirect or update UI as needed
       console.log('Login successful');

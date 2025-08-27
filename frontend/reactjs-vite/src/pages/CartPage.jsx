@@ -6,6 +6,8 @@ import Message from '../components/Message' // Make sure this import works
 
 import { addToCart, removeFromCart } from '../actions/cartActions'
 
+import { useAuth } from '../context/AuthContext'
+
 function CartPage() {
   const { id } = useParams()
   const location = useLocation()
@@ -16,6 +18,8 @@ function CartPage() {
   const qty = location.search ? Number(location.search.split('=')[1]) : 1
 
   const dispatch = useDispatch()
+
+  const { user } = useAuth();
 
   const cart = useSelector(state => state.cart)
   const { cartItems } = cart
@@ -33,7 +37,13 @@ function CartPage() {
   }
 
   const checkOutHandler = () => {
-    navigate('/login?redirect=shipping')
+    if (user) {
+      navigate('/shipping')
+    }
+    
+    else {
+      navigate('/login')
+    }
   }
 
   return (
