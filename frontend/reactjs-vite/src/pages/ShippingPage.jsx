@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
-import FormContainer from '../components/FormContainer'
+
 import { useDispatch, useSelector } from 'react-redux'
 
 // actions
 import { saveShippingAddress } from '../actions/shippingActions'
 import { useNavigate } from 'react-router-dom'
+
+// components
+import FormContainer from '../components/FormContainer'
+import CheckoutSteps from '../components/CheckoutSteps'
+
 
 function ShippingPage() {
     const cart = useSelector(state => state.cart)
@@ -28,6 +33,7 @@ function ShippingPage() {
 
     return (
     <FormContainer>
+        <CheckoutSteps step1 step2 />
         <h1>Shipping</h1>
         <Form onSubmit={submitHandler}>
             <Form.Group controlId='address'>
@@ -86,7 +92,7 @@ function ShippingPage() {
         </Form.Group>
 
 
-            <Button type='submit' variant='dark'>
+            <Button type='submit' className="btn btn-dark mt-3">
                 Continue
             </Button>
         </Form>
