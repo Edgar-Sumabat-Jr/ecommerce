@@ -12,6 +12,9 @@ import Registerpage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
+import ProductsPage from './pages/ProductsPage';
+import PaymentScreen from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 import PrivateRoute from './components/PrivateRoute';
 
@@ -26,7 +29,6 @@ import ThemeToggle from './components/ThemeToggle';
 import Layout from './components/Layout';
 
 
-import ProductsPage from './pages/ProductsPage';
 
 function App() {
   return (
@@ -44,6 +46,9 @@ function App() {
             <Route path='product/:id' element={<ProductsPage />} />
             <Route path='/cart/:id?' element={<CartPage />}/>
             <Route path='/shipping' element={<ShippingPage />} />
+
+            <Route path='/payment' element={<PaymentScreen />} />
+            <Route path='/place-order' element={<PlaceOrderPage />} />
 
             {/* ----------- testing links ----------*/}
             <Route path='todo' element={<Todo />} />
