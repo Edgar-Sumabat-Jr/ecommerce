@@ -35,12 +35,20 @@ function App() {
         <Routes>
           <Route path='/' element={<Layout />}>
             <Route index element={<HomePage />} />
-            <Route path='login' element={<Loginpage />} />
-            <Route path='register' element={<Registerpage />} />
+            {/* <Route path='register' element={<Registerpage />} />
             <Route path='profile' element={<ProfilePage />} />
-            <Route path="profile" element={<PrivateRoute element={ProfilePage} />} />
+            <Route path="profile" element={<PrivateRoute element={ProfilePage} />} /> */}
 
+
+
+            {/* ----------october 19, 2025-------------- */}
+            <Route path='login' element={<Loginpage />} />
             <Route path='product/:id' element={<ProductsPage />} />
+            {/* <Route path='cart/:id?' element={<CartPage />} /> */}
+
+            {/* ----------october 19, 2025-------------- */}
+
+
 
 
             {/* ----------- testing links ----------*/}
