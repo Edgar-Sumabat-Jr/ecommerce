@@ -1,8 +1,8 @@
 import React from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // pages
-// import Header from './pages/Header';
+import Header from './pages/Header';
 import HomePage from './pages/HomePage';
 import NoPage from './pages/NoPage';
 import Todo from './components/Todo';
@@ -12,65 +12,45 @@ import Registerpage from './pages/RegisterPage';
 import ProfilePage from './pages/ProfilePage';
 
 
-import PrivateRoute from './components/PrivateRoute';
+// import PrivateRoute from './components/PrivateRoute';
 
 
-import { AuthProvider } from './context/AuthContext';
+// import { AuthProvider } from './context/AuthContext';
 import Test2 from './pages/Test2';
 import ThemeToggle from './components/ThemeToggle';
 // import Footer from './components/Footer';
 
 
 // components/layout.jsx
-import Layout from './components/Layout';
+// import Layout from './components/Layout';
+import Footer from './components/Footer'
 
 
 import ProductsPage from './pages/ProductsPage';
 
+
+import { Container } from 'react-bootstrap';
+
 function App() {
   return (
-    <AuthProvider>
-      <BrowserRouter>
-
-        <Routes>
-          <Route path='/' element={<Layout />}>
+    <>
+      <Header />
+      <main className='py-3'>
+        <Container>
+          <Routes>
             <Route index element={<HomePage />} />
-            {/* <Route path='register' element={<Registerpage />} />
-            <Route path='profile' element={<ProfilePage />} />
-            <Route path="profile" element={<PrivateRoute element={ProfilePage} />} /> */}
-
-
-
-            {/* ----------october 19, 2025-------------- */}
             <Route path='login' element={<Loginpage />} />
             <Route path='product/:id' element={<ProductsPage />} />
-            {/* <Route path='cart/:id?' element={<CartPage />} /> */}
-
-            {/* ----------october 19, 2025-------------- */}
-
-
-
-
-            {/* ----------- testing links ----------*/}
             <Route path='todo' element={<Todo />} />
             <Route path='test' element={<Test />} />
             <Route path='test2' element={<Test2 />} />
-            {/* ----------- end of testing links ----------*/}
-
-
-
             <Route path='*' element={<NoPage />} />
-
-
-          </Route>
-        </Routes>
-
-      </BrowserRouter>
-    </AuthProvider>
-
-
-
-
+            <Route path='/profile' element={<ProfilePage />} />
+          </Routes>
+        </Container>
+      </main>
+      <Footer />
+    </>
   );
 }
 
