@@ -30,7 +30,7 @@ function CartPage() {
   const { cartItems } = cart
 
   const checkOutHandler = () => {
-    navigate('/login?redirect=shipping')
+    navigate('/login?redirect=/shipping')
   }
 
   return (

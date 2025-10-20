@@ -11,13 +11,32 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
 });
 
-
+// ----------------------start, october 19, 2025---------------------------
 const userInfoFromStorage = localStorage.getItem('userInfo')
     ? JSON.parse(localStorage.getItem('userInfo'))
-    : null
+    : null;
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+// ----------------------end, october 19, 2025---------------------------
+
+
+
+// --------------------start, october 20, 2025----------------------
+
+const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
+  ? JSON.parse(localStorage.getItem('shippingAddress'))
+  : {};
+
+// --------------------end, october 20, 2025----------------------
+
 
 const initialState = {
-    // cart: { cartItems: cartItemsFromStorage },
+    cart: { 
+      cartItems: cartItemsFromStorage,
+      shippingAddress: shippingAddressFromStorage,
+    },
     userLogin: { userInfo: userInfoFromStorage }
 }
 

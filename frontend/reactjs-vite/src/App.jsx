@@ -31,6 +31,7 @@ import ProductsPage from './pages/ProductsPage';
 
 import { Container } from 'react-bootstrap';
 import CartPage from './pages/CartPage';
+import ShippingPage from './pages/ShippingPage';
 
 function App() {
   return (
@@ -47,11 +48,18 @@ function App() {
             <Route path='test2' element={<Test2 />} />
             <Route path='*' element={<NoPage />} />
 
-    {/* --------------------october 19, 2025-------------- */}
+    {/* --------------------start, october 19, 2025-------------- */}
             <Route path='/profile' element={<ProfilePage />} />
             <Route path='/cart/:id?' element={<CartPage />} />
 
-          
+    {/* --------------------end, october 19, 2025-------------- */}
+
+
+    {/* ---------------------october 20, 2025----------------- */}
+          <Route path='/shipping' element={<ShippingPage />}></Route>
+
+
+
           </Routes>
         </Container>
       </main>
