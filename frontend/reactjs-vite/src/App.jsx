@@ -28,10 +28,11 @@ import Footer from './components/Footer'
 
 import ProductsPage from './pages/ProductsPage';
 
-
 import { Container } from 'react-bootstrap';
 import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
+
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   return (
@@ -55,10 +56,11 @@ function App() {
     {/* --------------------end, october 19, 2025-------------- */}
 
 
-    {/* ---------------------october 20, 2025----------------- */}
+    {/* ---------------------start, october 20, 2025----------------- */}
           <Route path='/shipping' element={<ShippingPage />}></Route>
-
-
+          <Route path='/payment' element={<PaymentPage />}></Route>
+          
+    {/* ---------------------end, october 20, 2025----------------- */}
 
           </Routes>
         </Container>
