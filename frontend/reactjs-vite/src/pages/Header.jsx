@@ -1,13 +1,11 @@
 import React from "react"
-import { Outlet, Link, } from "react-router-dom"
-import { useAuth } from "../context/AuthContext"
+import { Link } from "react-router-dom"
 import ThemeToggle from "../components/ThemeToggle";
 
 import '../styles/header.css'
 import '../index.css'
 
 import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
 
 
 import { logout } from "../actions/userActions";
