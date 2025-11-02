@@ -3,12 +3,15 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { productListReducer } from './reducers/productsReducers';
 import { userLoginReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
+import { orderCreateReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
   // productDetails: productDetailsreducer,
   cart: cartReducer,
   userLogin: userLoginReducer,
+  orderCreate: orderCreateReducer,
+
 });
 
 // ----------------------start, october 19, 2025---------------------------

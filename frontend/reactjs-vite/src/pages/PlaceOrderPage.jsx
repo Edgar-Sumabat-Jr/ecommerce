@@ -5,18 +5,51 @@ import { useDispatch, useSelector } from 'react-redux'
 import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message'
 
+import { createOrder } from '../actions/orderActions'
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 function PlaceOrderPage() {
   const cart = useSelector(state => state.cart)
 
   const itemsPrice = cart.cartItems.reduce((acc, item) => acc + item.price* item.qty, 0).toFixed(2);
-const shippingPrice = (itemsPrice > 100?0: 10).toFixed(2);
+const shippingPrice = (itemsPrice > 100 ? 0: 10).toFixed(2);
 const taxPrice = Number(0.12* itemsPrice).toFixed(2);
 const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPrice)).toFixed(2);
 
-  const placeOrder = () => {}
 
-  console.log("Place Order")
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  const orderCreate = useSelector(state => state.orderCreate)
+  const { order, error, success } = orderCreate
+
+  useEffect(() => {
+    if (!cart.paymentMethod) {
+      navigate('/payment')
+    } 
+    
+    if (success) {
+      navigate(`/order/${order._id}`)
+      dispatch({ type: ORDER_CREATE_RESET })
+    }
+  }, [success, navigate, cart.paymentMethod, order])
+
+  const placeOrder = () => {
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: itemsPrice,
+        shippingPrice: shippingPrice,
+        taxPrice: taxPrice,
+        totalPrice: totalPrice,
+      })
+    )
+  }
+
 
   return (
     <div>
@@ -90,32 +123,35 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
       <ListGroup.Item>
         <Row>
           <Col>Item:</Col>
-          <Col>${cart.itemsPrice}</Col>
+          <Col>${itemsPrice}</Col>
         </Row>
       </ListGroup.Item>
 
       <ListGroup.Item>
         <Row>
           <Col>Shipping:</Col>
-          <Col>${cart.shippingPrice}</Col>
+          <Col>${shippingPrice}</Col>
         </Row>
       </ListGroup.Item>
 
       <ListGroup.Item>
         <Row>
           <Col>Tax:</Col>
-          <Col>${cart.taxPrice}</Col>
+          <Col>${taxPrice}</Col>
         </Row>
       </ListGroup.Item>
 
       <ListGroup.Item>
         <Row>
           <Col>Total:</Col>
-          <Col>${cart.totalPrice}</Col>
+          <Col>${totalPrice}</Col>
         </Row>
       </ListGroup.Item>
 
 
+    <ListGroup.Item>
+      {error && <Message variant='danger'>{error}</Message>}
+    </ListGroup.Item>
 
 
     <ListGroup.Item>

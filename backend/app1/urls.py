@@ -29,8 +29,16 @@ urlpatterns = [
     path('api/users/login/', views.MyTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/users/profile/', views.getUserProfile, name="user-profile"),
 
-#----------october 19, 2025--------------------#
+#----------start, october 19, 2025--------------------#
     path('api/users/', views.getUsers, name="users"),
-    path('api/users/register', views.registerUser, name='register')
+    path('api/users/register/', views.registerUser, name='register'),
+#----------end, october 19, 2025----------------------#
+
+
+
+#----------start, november 2, 2025----------------------#
+    path('api/orders/add/', views.addOrderItems, name='orders-add')
+
+#----------end, november 2, 2025------------------------#
 
 ]
