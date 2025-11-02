@@ -33,6 +33,7 @@ import CartPage from './pages/CartPage';
 import ShippingPage from './pages/ShippingPage';
 
 import PaymentPage from './pages/PaymentPage';
+import PlaceOrderPage from './pages/PlaceOrderPage';
 
 function App() {
   return (
@@ -61,6 +62,16 @@ function App() {
           <Route path='/payment' element={<PaymentPage />}></Route>
           
     {/* ---------------------end, october 20, 2025----------------- */}
+
+
+
+    {/* ---------------------start, November 2, 2025----------------- */}
+
+          <Route path='/placeorder' element={<PlaceOrderPage />}></Route>
+
+    {/* ---------------------end, November 2, 2025----------------- */}
+
+
 
           </Routes>
         </Container>
