@@ -34,6 +34,7 @@ import ShippingPage from './pages/ShippingPage';
 
 import PaymentPage from './pages/PaymentPage';
 import PlaceOrderPage from './pages/PlaceOrderPage';
+import OrderPage from './pages/orderPage';
 
 function App() {
   return (
@@ -71,6 +72,13 @@ function App() {
 
     {/* ---------------------end, November 2, 2025----------------- */}
 
+
+
+    {/* ---------------------start, November 5, 2025----------------- */}
+
+      <Route path='/order/:id' element={<OrderPage />}></Route>
+
+    {/* ---------------------end, November 5, 2025----------------- */}
 
 
           </Routes>

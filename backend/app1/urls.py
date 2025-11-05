@@ -37,8 +37,14 @@ urlpatterns = [
 
 
 #----------start, november 2, 2025----------------------#
-    path('api/orders/add/', views.addOrderItems, name='orders-add')
+    path('api/orders/add/', views.addOrderItems, name='orders-add'),
 
 #----------end, november 2, 2025------------------------#
+
+
+#----------start, november 5, 2025------------------------#
+    path('api/orders/<str:pk>/', views.getorderById, name='user-order')    
+
+#----------end, november 5, 2025------------------------#
 
 ]

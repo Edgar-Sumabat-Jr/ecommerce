@@ -28,3 +28,33 @@ export const orderCreateReducer = (state = {}, action) => {
       return state
   }
 }
+
+
+// --------------start, november 5, 2025----------------
+import { ORDER_DETAILS_REQUEST, ORDER_DETAILS_SUCCESS, ORDER_DETAILS_FAIL } from "../constants/orderConstants";
+export const orderDetailsReducer = (
+    state = { loading: true, orderItems: [], shippingAddress: {} },
+    action
+) => {
+    switch (action.type) {
+        case ORDER_DETAILS_REQUEST:
+            return {
+                ...state,
+                loading: true,
+            };
+        case ORDER_DETAILS_SUCCESS:
+            return {
+                loading: false,
+                order: action.payload,
+            };
+        case ORDER_DETAILS_FAIL:
+            return {
+                loading: false,
+                error: action.payload,
+            };
+        default:
+            return state;
+    }
+};
+
+// --------------end, november 5, 2025----------------
