@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 
 import { productListReducer } from './reducers/productsReducers';
-import { userLoginReducer } from './reducers/userReducers';
+import { userDetailsReducer, userLoginReducer, userUpdateProfileReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
-import { orderCreateReducer, orderDetailsReducer } from './reducers/orderReducers';
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -13,6 +13,13 @@ const reducer = combineReducers({
   orderCreate: orderCreateReducer,
   orderDetails: orderDetailsReducer,
 
+  // --------start, november 6, 2025----------
+  // userRegister: userRegisterReducer,
+  userDetails: userDetailsReducer,
+  userUpdateProfile: userUpdateProfileReducer,
+  orderListMy: orderListMyReducer,
+
+    // --------end, november 6, 2025----------
 });
 
 // ----------------------start, october 19, 2025---------------------------

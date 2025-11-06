@@ -43,8 +43,16 @@ urlpatterns = [
 
 
 #----------start, november 5, 2025------------------------#
-    path('api/orders/<str:pk>/', views.getorderById, name='user-order')    
+    path('api/orders/<str:pk>/', views.getorderById, name='user-order'),  
 
 #----------end, november 5, 2025------------------------#
+
+
+#----------start, november 6, 2025------------------------#
+    path('api/profile/', views.getUserProfile, name='user-profile'),
+    path('api/profile/update', views.updateUserProfile, name='user-profile-update'),
+    path('api/myorders/', views.getMyOrders, name='myorders')
+    
+#----------end, november 6, 2025------------------------#
 
 ]
