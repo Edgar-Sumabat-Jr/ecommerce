@@ -99,7 +99,7 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
   <h2>Payment Method</h2>
   <p>
     <strong>Method: </strong>
-    {/* {cart.paymentMethod} */}
+    {order.paymentMethod}
   </p>
   {order.isPaid ? (
     <Message variant='success'>Paid on {order.paidAt}</Message>

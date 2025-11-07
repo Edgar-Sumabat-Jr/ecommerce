@@ -292,4 +292,22 @@ def getMyOrders(request):
     orders = user.order_set.all()
     serializer = OrderSerializer(orders, many=True)
     return Response(serializer.data)
+
 #-------------end, november 6, 2025-------------------#
+
+
+
+#-------------start, november 7, 2025-------------------#
+from datetime import datetime
+
+@api_view(['PUT'])
+@permission_classes([IsAuthenticated])
+def updateOrdertoPaid(request, pk):
+    order = Order.objects.get(_id=pk)
+    order.isPaid = True
+    order.paidAt = datetime.now()
+    order.save()
+    return Response("Order was paid")
+
+
+#-------------end, november 7, 2025-------------------#

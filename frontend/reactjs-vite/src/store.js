@@ -3,7 +3,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { productListReducer } from './reducers/productsReducers';
 import { userDetailsReducer, userLoginReducer, userUpdateProfileReducer } from './reducers/userReducers';
 import { cartReducer } from './reducers/cartReducers';
-import { orderCreateReducer, orderDetailsReducer, orderListMyReducer } from './reducers/orderReducers';
+import { orderCreateReducer, orderDetailsReducer, orderListMyReducer, orderPayReducer } from './reducers/orderReducers';
 
 const reducer = combineReducers({
   productList: productListReducer,
@@ -18,8 +18,13 @@ const reducer = combineReducers({
   userDetails: userDetailsReducer,
   userUpdateProfile: userUpdateProfileReducer,
   orderListMy: orderListMyReducer,
+// --------end, november 6, 2025----------
 
-    // --------end, november 6, 2025----------
+
+// --------start, november 7, 2025----------
+  orderPay: orderPayReducer,
+// --------end, november 7, 2025----------
+
 });
 
 // ----------------------start, october 19, 2025---------------------------

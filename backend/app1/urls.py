@@ -51,8 +51,14 @@ urlpatterns = [
 #----------start, november 6, 2025------------------------#
     path('api/profile/', views.getUserProfile, name='user-profile'),
     path('api/profile/update', views.updateUserProfile, name='user-profile-update'),
-    path('api/myorders/', views.getMyOrders, name='myorders')
+    path('api/myorders/', views.getMyOrders, name='myorders'),
     
 #----------end, november 6, 2025------------------------#
+
+
+#----------start, november 7, 2025------------------------#
+    path('api/orders/<str:pk>/pay', views.updateOrdertoPaid, name='pay'),
+
+#----------end, november 7, 2025------------------------#
 
 ]

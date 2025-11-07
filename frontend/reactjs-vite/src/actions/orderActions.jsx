@@ -126,6 +126,54 @@ export const getMyOrders = () => async (dispatch, getState) => {
         });
     }
 };
+// ----------------end, november 5, 2025--------------
+
+
+
+// ----------------start, november 7, 2025--------------
+import { 
+    ORDER_PAY_REQUEST,
+    ORDER_PAY_SUCCESS,
+    ORDER_PAY_FAIL,
+ } from "../constants/orderConstants";
+
+export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: ORDER_PAY_REQUEST,
+        })
+
+        const {
+            userLogin: { userInfo },
+        } = getState()
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${userInfo.token}`,
+            },
+        }
+
+        const { data } = await axios.put(
+            `http://127.0.0.1:8000/api/orders/${id}/pay/`,
+            paymentResult,
+            config
+        )
+
+        dispatch({
+            type: ORDER_PAY_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: ORDER_PAY_FAIL,
+            payload:
+                error.response && error.response.data.detail
+                    ? error.response.data.detail
+                    : error.message,
+        })
+    }
+}
 
 
 // ----------------end, november 5, 2025--------------
