@@ -46,7 +46,7 @@ function ProductsPage() {
             ) : (
                 <Row>
                     <Col md={6}>
-                        <Image src={product.image} alt={product.name} fluid />
+                        <Image src={`http://127.0.0.1:8000${product.image}`} alt={product.name} fluid />
                     </Col>
 
                     <Col md={3}>
