@@ -57,7 +57,7 @@ urlpatterns = [
 
 
 #----------start, november 7, 2025------------------------#
-    path('api/orders/<str:pk>/pay', views.updateOrdertoPaid, name='pay'),
+    path('api/orders/<str:pk>/pay/', views.updateOrdertoPaid, name='pay'),
 
 #----------end, november 7, 2025------------------------#
 

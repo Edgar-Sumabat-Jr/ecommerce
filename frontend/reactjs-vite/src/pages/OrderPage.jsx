@@ -5,10 +5,15 @@ import { useDispatch, useSelector } from 'react-redux'
 // import CheckoutSteps from '../components/CheckoutSteps'
 import Message from '../components/Message'
 
-import { createOrder, getOrderDetails } from '../actions/orderActions'
 // import { ORDER_CREATE_RESET } from '../constants/orderConstants'
 
 import Loader from '../components/Loader'
+
+import { getOrderDetails, payOrder, createOrder } from '../actions/orderActions'
+import { ORDER_PAY_RESET } from '../constants/orderConstants'
+
+
+import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 
 function OrderPage() {
@@ -25,6 +30,15 @@ const { id: orderId } = useParams();
 
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, error, loading } = orderDetails;
+
+
+// ----------start, november 7, 2025---------------
+  const orderPay = useSelector((state) => state.orderPay);
+  const { loading: loadingPay, success: successPay } = orderPay;
+  const [sdkReady, setSdkReady] = useState(false)
+
+  // ----------end, november 7, 2025---------------
+
 
 const itemsPrice = !loading && !error && order?.orderItems
   ? order.orderItems.reduce((acc, item) => acc + item.price * item.qty, 0).toFixed(2)
@@ -44,10 +58,39 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
     //   dispatch({ type: ORDER_CREATE_RESET })
     // }
 
-    if (!order || order._id !== Number(orderId)) {
-    dispatch(getOrderDetails(orderId));
-  }
-}, [dispatch, orderId, order]);
+    if (!order || successPay || order._id !== Number(orderId)) {
+        dispatch({ type: ORDER_PAY_RESET })
+        dispatch(getOrderDetails(orderId))
+    } else if (!order.isPaid) {
+        if (!window.paypal) {
+            addPayPalScript()
+        } else {
+            setSdkReady(true)
+        }
+    }
+}, [dispatch, orderId, order, successPay]);
+
+
+
+
+const successPaymentHandler = (paymentResult) => {
+    dispatch(payOrder(orderId, paymentResult))
+}
+
+
+const createOrderHandler = (data, actions) => {
+    return actions.order.create({
+        purchase_units: [
+            {
+                amount: {
+                    value: totalPrice,
+                    currency_code: "USD",
+                },
+            },
+        ],
+    })
+}
+
 
 //   const placeOrder = () => {
 //     dispatch(
@@ -62,6 +105,20 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
 //       })
 //     )
 //   }
+
+
+const addPayPalScript = () => {
+    const script = document.createElement('script')
+    script.type = 'text/javascript'
+    script.src = 'https://www.paypal.com/sdk/js?client-id=AT9BZNQ6XRIbLWhRDWl-bJPPZ80WBqGcnKiDPXu4BjJtF9KOV9Bn8Vf70rYcoOBhBlpKAbhu4NeedAgq&currency=USD'
+    script.async = true
+    script.onload = () => {
+        setSdkReady(true)
+    }
+    document.body.appendChild(script)
+}
+
+
 
 
   return loading ? (
@@ -145,6 +202,7 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
         <Col md={4}>
   <Card>
     <ListGroup variant='flush'>
+      {/* Order Summary */}
       <ListGroup.Item>
         <h2>Order Summary</h2>
       </ListGroup.Item>
@@ -177,28 +235,31 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
         </Row>
       </ListGroup.Item>
 
-
-    {/* <ListGroup.Item>
-      {error && <Message variant='danger'>{error}</Message>}
-    </ListGroup.Item>
-
-
-    <ListGroup.Item>
-  <Row>
-    <Button
-      type='button'
-      className='btn-block'
-      disabled={cart.cartItems === 0}
-      onClick={placeOrder}
-    >
-      Place Order
-    </Button>
-  </Row>
-</ListGroup.Item> */}
-</ListGroup>
-</Card>
-
+      {/* --- PayPal Button Section --- */}
+      {!order.isPaid && (
+        <ListGroup.Item>
+          {loadingPay && <Loader />}
+          {!sdkReady ? (
+            <Loader />
+          ) : (
+            <PayPalScriptProvider
+              options={{
+                "client-id": "AT9BZNQ6XRIbLWhRDWl-bJPPZ80WBqGcnKiDPXu4BjJtF9KOV9Bn8Vf70rYcoOBhBlpKAbhu4NeedAgq",
+              }}
+            >
+              <PayPalButtons
+                createOrder={createOrderHandler}
+                style={{ layout: "vertical" }}
+                onApprove={successPaymentHandler}
+              />
+            </PayPalScriptProvider>
+          )}
+        </ListGroup.Item>
+      )}
+    </ListGroup>
+  </Card>
 </Col>
+
 
       </Row>
     </div>
