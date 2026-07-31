@@ -6,6 +6,10 @@ import axios from 'axios'
 
 import Loader from '../components/Loader'
 
+import { API_BASE_URL } from '../constants/backendConstants'
+
+import Message from '../components/Message'
+
 function ProductsPage() {
     const { id } = useParams()
     const [product, setProduct] = useState([])
@@ -46,7 +50,7 @@ function ProductsPage() {
             ) : (
                 <Row>
                     <Col md={6}>
-                        <Image src={`http://127.0.0.1:8000${product.image}`} alt={product.name} fluid />
+                        <Image src={`${API_BASE_URL}${product.image}`} alt={product.name} fluid />
                     </Col>
 
                     <Col md={3}>

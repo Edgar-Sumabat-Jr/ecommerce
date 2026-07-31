@@ -7,6 +7,7 @@ import Message from '../components/Message'
 
 import { createOrder } from '../actions/orderActions'
 import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { API_BASE_URL } from '../constants/backendConstants'
 
 function PlaceOrderPage() {
   const cart = useSelector(state => state.cart)
@@ -92,7 +93,7 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
         <ListGroup.Item key={index}>
           <Row>
             <Col md={1}>
-              <Image src={item.image} alt={item.name} fluid rounded />
+              <Image src={`${API_BASE_URL}${item.image}`} alt={item.name} fluid rounded />
             </Col>
             <Col>
               <Link to={`/products/${item.product}`}>{item.name}</Link>

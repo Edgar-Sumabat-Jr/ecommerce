@@ -1,2 +1,8 @@
-venv/
+# Python cache & database
+__pycache__/
+*.pyc
+backend/db.sqlite3
+
+# Vite / Node builds
 node_modules/
+dist/

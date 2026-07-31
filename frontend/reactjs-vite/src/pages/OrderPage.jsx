@@ -15,6 +15,7 @@ import { ORDER_PAY_RESET } from '../constants/orderConstants'
 
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
+import { API_BASE_URL } from '../constants/backendConstants'
 
 function OrderPage() {
 //   const cart = useSelector(state => state.cart)
@@ -120,7 +121,7 @@ const addPayPalScript = () => {
 
 
 
-
+  console.log("ORDER ITEMS:", order?.orderItems);
   return loading ? (
     <Loader />
   ) : error ? (
@@ -180,7 +181,7 @@ const addPayPalScript = () => {
         <ListGroup.Item key={item.product}>
           <Row>
             <Col md={1}>
-              <Image src={item.image} alt={item.name} fluid rounded />
+              <Image src={`${API_BASE_URL}${item.image}`} alt={item.name} fluid rounded />
             </Col>
             <Col>
               <Link to={`/products/${item.product}`}>{item.name}</Link>
