@@ -93,7 +93,7 @@ const totalPrice = (Number (itemsPrice) + Number (shippingPrice) + Number(taxPri
         <ListGroup.Item key={index}>
           <Row>
             <Col md={1}>
-              <Image src={`${API_BASE_URL}${item.image}`} alt={item.name} fluid rounded />
+              <Image src={item.image} alt={item.name} fluid rounded />
             </Col>
             <Col>
               <Link to={`/products/${item.product}`}>{item.name}</Link>

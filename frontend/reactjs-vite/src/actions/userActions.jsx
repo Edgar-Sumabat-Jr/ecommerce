@@ -6,7 +6,7 @@ import {
     
 } from "../constants/useConstants"
 
-import axios from 'axios'
+import api from "../api/axios";
 
 export const login = (email, password) => async (dispatch) => {
     try {
@@ -20,8 +20,8 @@ export const login = (email, password) => async (dispatch) => {
             }
         }
 
-        const { data } = await axios.post(
-            'http://127.0.0.1:8000/api/users/login/',
+        const { data } = await api.post(
+            '/api/users/login/',
             { username: email, password: password },
             config
         )
@@ -74,7 +74,7 @@ export const getUserDetails = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/users/${id}/`, config);
+        const { data } = await api.get(`/api/users/${id}/`, config);
 
         dispatch({
             type: USER_DETAILS_SUCCESS,
@@ -115,7 +115,7 @@ export const updateUserProfile = (user) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.put(`http://127.0.0.1:8000/api/profile/update`, user, config);
+        const { data } = await api.put(`/api/profile/update`, user, config);
 
         dispatch({
             type: USER_UPDATE_PROFILE_SUCCESS,

@@ -6,3 +6,12 @@ backend/db.sqlite3
 # Vite / Node builds
 node_modules/
 dist/
+
+.env
+.env.*
+*.log
+venv/
+__pycache__/
+
+changes.txt
+ainotes.txt

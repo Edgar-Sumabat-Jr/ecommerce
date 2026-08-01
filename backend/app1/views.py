@@ -91,7 +91,7 @@ from app1.products import products
 @api_view(['GET'])
 def getProducts(request):
     products = Product.objects.all()
-    serializer = ProductSerializer(products, many=True)
+    serializer = ProductSerializer(products, many=True, context={'request':request})
     return Response(serializer.data)
 
 
@@ -111,7 +111,7 @@ def getProducts(request):
 @api_view(['GET'])
 def getProduct(request, pk):
     product = get_object_or_404(Product, pk=pk)
-    serializer = ProductSerializer(product, many=False)
+    serializer = ProductSerializer(product, many=False, context={'request':request})
     
     return Response(serializer.data)
 

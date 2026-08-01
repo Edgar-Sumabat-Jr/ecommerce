@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 
 import { Row, Col, Container } from 'react-bootstrap'
 
-import axios from 'axios'
+import api from "../api/axios";
 
 // import products from '../products'
 

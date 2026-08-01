@@ -1,8 +1,8 @@
-import axios from 'axios'
+import api from "../api/axios";
 import { CART_ADD_ITEM, CART_REMOVE_ITEM, CART_SAVE_METHOD } from '../constants/cartConstants'
 
 export const addToCart = (id, qty) => async (dispatch, getState) => {
-  const { data } = await axios.get(`http://127.0.0.1:8000/api/product/${id}`)
+  const { data } = await api.get(`/api/product/${id}`)
 
   dispatch({
     type: CART_ADD_ITEM,
@@ -66,7 +66,7 @@ export const savePaymentMethod = (data) => (dispatch) => {
 //       },
 //     };
 
-//     const { data } = await axios.post(`/api/orders/add/`, order, config);
+//     const { data } = await api.post(`/api/orders/add/`, order, config);
 
 //     dispatch({
 //       type: ORDER_CREATE_SUCCESS,

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios';
+import api from "../api/axios";;
 import { useAuth } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ function LoginForm() {
     event.preventDefault();
     const { email, password } = inputs; // Destructure from inputs state
     try {
-      const response = await axios.post('http://localhost:8000/api/login/', {
+      const response = await api.post('http://localhost:8000/api/login/', {
         email: email,
         password: password
       });

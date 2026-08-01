@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios';
+import api from "../api/axios";;
 
 function RegisterForm() {
     const [inputs, setInputs] = useState({});
@@ -16,7 +16,7 @@ function RegisterForm() {
         event.preventDefault();
         const { username, email, password, password2 } = inputs; // Destructure from inputs state
         try {
-            const response = await axios.post('http://localhost:8000/api/register/', {
+            const response = await api.post('http://localhost:8000/api/register/', {
                 username: username,
                 email: email,
                 password: password,

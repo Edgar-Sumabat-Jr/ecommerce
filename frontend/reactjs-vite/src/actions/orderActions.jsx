@@ -1,4 +1,4 @@
-import axios from 'axios';
+import api from "../api/axios";;
 import {
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -24,7 +24,7 @@ export const createOrder = (order) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.post(`http://127.0.0.1:8000/api/orders/add/`, order, config);
+    const { data } = await api.post(`/api/orders/add/`, order, config);
 
     dispatch({
       type: ORDER_CREATE_SUCCESS,
@@ -69,7 +69,7 @@ export const getOrderDetails = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/orders/${id}/`, config);
+        const { data } = await api.get(`/api/orders/${id}/`, config);
 
         dispatch({
             type: ORDER_DETAILS_SUCCESS,
@@ -110,7 +110,7 @@ export const getMyOrders = () => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.get(`http://127.0.0.1:8000/api/myorders/`, config);
+        const { data } = await api.get(`/api/myorders/`, config);
 
         dispatch({
             type: ORDER_LIST_MY_SUCCESS,
@@ -154,8 +154,8 @@ export const payOrder = (id, paymentResult) => async (dispatch, getState) => {
             },
         }
 
-        const { data } = await axios.put(
-            `http://127.0.0.1:8000/api/orders/${id}/pay/`,
+        const { data } = await api.put(
+            `/api/orders/${id}/pay/`,
             paymentResult,
             config
         )

@@ -1,4 +1,4 @@
-import axios from 'axios';  // Make sure you import axios if you haven't already
+import api from "../api/axios";;  // Make sure you import axios if you haven't already
 import { 
   PRODUCT_LIST_REQUEST, 
   PRODUCT_LIST_SUCCESS, 
@@ -10,7 +10,7 @@ export const listProducts = () => async (dispatch) => {
     dispatch({ type: PRODUCT_LIST_REQUEST });
 
     // Make the GET request to fetch products
-    const { data } = await axios.get("http://127.0.0.1:8000/api/products/");
+    const { data } = await api.get("/api/products/");
 
     // Dispatch success action with the fetched data
     dispatch({

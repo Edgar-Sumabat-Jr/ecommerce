@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Link, useParams, useNavigate } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Button, Card, Form } from 'react-bootstrap'
 import Rating from '../components/Rating'
-import axios from 'axios'
 
 import Loader from '../components/Loader'
 
 import { API_BASE_URL } from '../constants/backendConstants'
 
 import Message from '../components/Message'
+import api from '../api/axios'
 
 function ProductsPage() {
     const { id } = useParams()
@@ -18,6 +18,7 @@ function ProductsPage() {
     const [error, setError] = useState(null)
 
     const navigate = useNavigate()
+    console.log("Django Image Path:", product?.image);
 
     const addToCartHandler = () => {
         navigate(`/cart/${id}?qty=${qty}`)
@@ -26,7 +27,7 @@ function ProductsPage() {
     useEffect(() => {
         async function fetchProduct() {
             try {
-                const { data } = await axios.get(`http://127.0.0.1:8000/api/product/${id}`)
+                const { data } = await api.get(`/api/product/${id}`)
                 setProduct(data)
             } catch (err) {
                 setError('Error loading product.')
@@ -37,6 +38,13 @@ function ProductsPage() {
         fetchProduct()
     }, [id])
 
+// // 🔴 Put this right before your "return (" statement
+// if (typeof props !== 'undefined') console.log("All Props:", props);
+
+// // If you are fetching data using useState, look for your state variable name 
+// // (e.g., products, product, data) and log it here:
+// // console.log("My state data looks like:", products); 
+    
     return (
         <div>
             <Link to='/' className='btn btn-secondary my-3'>
@@ -50,7 +58,7 @@ function ProductsPage() {
             ) : (
                 <Row>
                     <Col md={6}>
-                        <Image src={`${API_BASE_URL}${product.image}`} alt={product.name} fluid />
+                        <Image src={product.image} alt={product.name} fluid />
                     </Col>
 
                     <Col md={3}>
