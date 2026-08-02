@@ -34,8 +34,8 @@ function Header() {
               <Nav.Link as={Link} to="/" className="custom-nav-link"><i className="fa-solid fa-house"></i>Home</Nav.Link>
               <Nav.Link as={Link} to="/cart" className="custom-nav-link"><i className="fa-solid fa-cart-shopping"></i>Cart</Nav.Link>
               {userInfo ? (
-                <NavDropdown title={userInfo.name} id="username" className="custom-nav-link">
-                  <NavDropdown.Item as={Link} to="/profile">
+                <NavDropdown title={<span><i className="fa-solid fa-user me-1"></i>{userInfo.name}</span>} id="username" className="custom-nav-link">
+                  <NavDropdown.Item as={Link} to="/profile"><i class="fa-solid fa-user"></i>
                     Profile
                   </NavDropdown.Item>
                   <NavDropdown.Item onClick={logoutHandler}>
