@@ -27,7 +27,7 @@ function Header() {
     <>
       <Navbar expand="lg" className="custom-navbar shadow">
         <Container fluid className="px-3"> {/* remove vertical padding here */}
-          <Navbar.Brand as={Link} to="/">MyApp</Navbar.Brand>
+          <Navbar.Brand as={Link} to="/">Shop</Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
