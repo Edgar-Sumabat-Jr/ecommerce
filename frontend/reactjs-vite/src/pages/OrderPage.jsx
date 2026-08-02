@@ -121,7 +121,7 @@ const addPayPalScript = () => {
 
 
 
-  console.log("ORDER ITEMS:", order?.orderItems);
+console.log("IMAGE PATH:", item.image)
   return loading ? (
     <Loader />
   ) : error ? (
@@ -181,7 +181,7 @@ const addPayPalScript = () => {
         <ListGroup.Item key={item.product}>
           <Row>
             <Col md={1}>
-              <Image src={`${API_BASE_URL}${item.image}`} alt={item.name} fluid rounded />
+              <Image src={item.image} alt={item.name} fluid rounded />
             </Col>
             <Col>
               <Link to={`/products/${item.product}`}>{item.name}</Link>
