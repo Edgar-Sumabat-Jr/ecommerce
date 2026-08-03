@@ -37,6 +37,33 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r backend/requirements.txt
 
+      - name: Run Django System Check
+        working-directory: backend
+        env:
+          SECRET_KEY: ci-secret-key
+          DEBUG: False
+          DB_NAME: ci_db
+          DB_USER: ci_user
+          DB_PASSWORD: ci_password
+          DB_HOST: localhost
+          DB_PORT: 5432
+        run: |
+          python manage.py check
+
+      - name: Check for Missing Migrations
+        working-directory: backend
+        env:
+          SECRET_KEY: ci-secret-key
+          DEBUG: False
+          DB_NAME: ci_db
+          DB_USER: ci_user
+          DB_PASSWORD: ci_password
+          DB_HOST: localhost
+          DB_PORT: 5432
+        run: |
+          python manage.py makemigrations --check --dry-run
+
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
