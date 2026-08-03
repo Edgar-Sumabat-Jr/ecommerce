@@ -79,3 +79,7 @@ jobs:
       - name: Install Frontend Dependencies
         working-directory: frontend/reactjs-vite
         run: npm ci
+
+      - name: Build React Application
+        working-directory: frontend/reactjs-vite
+        run: npm run build
