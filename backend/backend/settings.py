@@ -45,7 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'app1',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
+    "health_check",  # Core health check functionality
+
 ]
 
 MIDDLEWARE = [
