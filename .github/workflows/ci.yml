@@ -11,9 +11,9 @@ on:
       - main
       - master
 
-  permissions:
-    contents: read
-    packages: write
+permissions:
+  contents: read
+  packages: write
   
 
 jobs:
@@ -87,9 +87,6 @@ jobs:
 
       - name: Validate Docker Compose Configuration
         run: docker compose config
-
-      - name: Build Docker Images
-        run: docker compose build
 
       - name: Build Docker Images
         run: docker compose build
