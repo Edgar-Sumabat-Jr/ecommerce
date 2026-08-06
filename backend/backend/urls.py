@@ -20,12 +20,12 @@ from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from health_check.views import HealthCheckView  # Import the view directly
+from app1.views import health_check
 
 urlpatterns = [
     path('', include('app1.urls')),
     path('admin/', admin.site.urls),
-    path('api/health/', HealthCheckView.as_view(), name="health_check"),
+    path("api/health/", health_check, name="health_check"),
 ]
 
 if settings.DEBUG:

@@ -311,3 +311,12 @@ def updateOrdertoPaid(request, pk):
 
 
 #-------------end, november 7, 2025-------------------#
+
+
+#-------------start, august 6, 2026-------------------#
+def health_check(request):
+    return JsonResponse({
+        "status": "ok"
+    })
+
+#-------------start, august 6, 2026-------------------#
