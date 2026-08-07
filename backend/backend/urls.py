@@ -22,10 +22,13 @@ from django.conf.urls.static import static
 
 from app1.views import health_check
 
+from app1.views import cloudinary_test
+
 urlpatterns = [
     path('', include('app1.urls')),
     path('admin/', admin.site.urls),
     path("api/health/", health_check, name="health_check"),
+    path("api/cloudinary-test/", cloudinary_test),
 ]
 
 # if settings.DEBUG:

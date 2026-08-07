@@ -320,3 +320,14 @@ def health_check(request):
     })
 
 #-------------start, august 6, 2026-------------------#
+
+
+from django.http import JsonResponse
+
+
+def cloudinary_test(request):
+    return JsonResponse({
+        "cloud_name": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+        "api_key": os.environ.get("CLOUDINARY_API_KEY"),
+        "api_secret_exists": bool(os.environ.get("CLOUDINARY_API_SECRET")),
+    })
