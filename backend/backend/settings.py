@@ -45,6 +45,7 @@ INSTALLED_APPS = [
 
     'django.contrib.staticfiles',
     "cloudinary",
+    "cloudinary_storage",
 
     'app1',
     'rest_framework',
@@ -163,7 +164,6 @@ REST_FRAMEWORK = {
 # simplejwt token settings
 from datetime import timedelta
 
-from datetime import timedelta
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
