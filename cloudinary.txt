@@ -1,0 +1,4 @@
+cloud name: h2devmdj
+key name: Root
+api key: 586495631339674
+api secret: Ay1PpqBJbShGNVun26hpaU2HT-U
