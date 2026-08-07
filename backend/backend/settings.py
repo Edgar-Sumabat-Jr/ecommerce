@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'app1',
     'rest_framework',
     'corsheaders',
-    "health_check",  # Core health check functionality
 
 ]
 
