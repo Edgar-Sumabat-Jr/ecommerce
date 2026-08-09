@@ -167,40 +167,19 @@ def registerUser(request):
     data = request.data
 
     try:
-        username = data.get('username')
-        email = data.get('email')
-        password = data.get('password')
-        password2 = data.get('password2')
-
-        if not username or not email or not password or not password2:
-            return Response(
-                {'detail': 'All fields are required.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        if password != password2:
-            return Response(
-                {'detail': 'Passwords must match.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
-        if User.objects.filter(email=email).exists():
-            return Response(
-                {'detail': 'User with this email already exists.'},
-                status=status.HTTP_400_BAD_REQUEST
-            )
-
         user = User.objects.create(
-            username=email,
-            email=email,
-            password=make_password(password)
+            first_name=data.get('username', ''),
+            username=data['email'],
+            email=data['email'],
+            password=make_password(data['password'])
         )
 
         serializer = UserSerializerWithToken(user, many=False)
-
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.data)
 
     except Exception as e:
+        print("REGISTRATION ERROR:", repr(e))
+
         return Response(
             {'detail': str(e)},
             status=status.HTTP_400_BAD_REQUEST
