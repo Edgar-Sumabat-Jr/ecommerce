@@ -20,6 +20,7 @@ const ShippingPage = lazy(() => import('./pages/ShippingPage'));
 const PaymentPage = lazy(() => import('./pages/PaymentPage'));
 const PlaceOrderPage = lazy(() => import('./pages/PlaceOrderPage'));
 const OrderPage = lazy(() => import('./pages/OrderPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 
 function App() {
   return (
@@ -55,6 +56,10 @@ function App() {
               {/* ---------------------start, November 5, 2025----------------- */}
               <Route path='/order/:id' element={<OrderPage />}></Route>
               {/* ---------------------end, November 5, 2025----------------- */}
+
+              <Route path='/register' element={<RegisterPage />}></Route>
+              
+
             </Routes>
           </Suspense>
         </Container>

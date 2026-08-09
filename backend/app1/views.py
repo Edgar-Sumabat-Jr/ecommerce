@@ -159,24 +159,52 @@ def getUsers(request):
 
 from django.contrib.auth.hashers import make_password
 from rest_framework import status
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 @api_view(['POST'])
 def registerUser(request):
     data = request.data
 
     try:
-        user = User.objects.create(
-            first_name=data['name'],
-            username=data['email'],
-            email=data['email'],
-            password=make_password(data['password'])
-        )
-        serializer = UserSerializerWithToken(user, many=False)
-        return Response(serializer.data)
+        username = data.get('username')
+        email = data.get('email')
+        password = data.get('password')
+        password2 = data.get('password2')
 
-    except:
-        message = {'detail': 'User with this email already exists'}
-        return Response(message, status=status.HTTP_400_BAD_REQUEST)
+        if not username or not email or not password or not password2:
+            return Response(
+                {'detail': 'All fields are required.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if password != password2:
+            return Response(
+                {'detail': 'Passwords must match.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        if User.objects.filter(email=email).exists():
+            return Response(
+                {'detail': 'User with this email already exists.'},
+                status=status.HTTP_400_BAD_REQUEST
+            )
+
+        user = User.objects.create(
+            username=email,
+            email=email,
+            password=make_password(password)
+        )
+
+        serializer = UserSerializerWithToken(user, many=False)
+
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+    except Exception as e:
+        return Response(
+            {'detail': str(e)},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
 
 #-------------start, november 2, 2025-------------------#
