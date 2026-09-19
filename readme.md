@@ -1,5 +1,2 @@
-john_doe
-supersecretpassword
-
-qwe
-123@qwe123
+Ecommerce Website:
+tech stack: Python, Django, React.js
